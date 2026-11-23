@@ -1,0 +1,15 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // portfolio/** : authenticated users can upload; anyone can read (for portfolio site).
+    // {allPaths=**} covers files in subfolders such as portfolio/avatars/.
+    match /portfolio/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    // Block everything else by default
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

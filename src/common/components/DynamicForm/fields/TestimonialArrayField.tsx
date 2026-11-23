@@ -1,0 +1,49 @@
+import { useFormContext, useFieldArray } from 'react-hook-form';
+import type { DynamicFormFieldConfig } from '../types';
+
+interface TestimonialArrayFieldProps {
+  field: DynamicFormFieldConfig;
+}
+
+const emptyItem = { clientName: '', feedback: '', projectType: '' };
+
+export function TestimonialArrayField({ field }: TestimonialArrayFieldProps) {
+  const { control, register, formState: { errors } } = useFormContext();
+  const { fields, append, remove } = useFieldArray({ control, name: field.name as never });
+  const error = errors[field.name];
+
+  return (
+    <div className={field.className}>
+      <div className="d-flex justify-content-between align-items-center mb-2">
+        <label className="form-label mb-0">{field.label}</label>
+        <button type="button" className="btn btn-sm btn-outline-primary" onClick={() => append(emptyItem)}>
+          Add testimonial
+        </button>
+      </div>
+      <div className="d-flex flex-column gap-3">
+        {fields.map((item, index) => (
+          <div key={item.id} className="border rounded p-3 bg-light">
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <span className="small fw-semibold text-muted">Testimonial {index + 1}</span>
+              <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => remove(index)}>Remove</button>
+            </div>
+            <div className="row g-2">
+              <div className="col-12 col-md-6">
+                <input className="form-control form-control-sm" placeholder="Client name" {...register(`${field.name}.${index}.clientName` as const)} />
+              </div>
+              <div className="col-12 col-md-6">
+                <input className="form-control form-control-sm" placeholder="Project type" {...register(`${field.name}.${index}.projectType` as const)} />
+              </div>
+              <div className="col-12">
+                <textarea className="form-control form-control-sm" placeholder="Short feedback" rows={3} {...register(`${field.name}.${index}.feedback` as const)} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {error && typeof error === 'object' && 'message' in error && typeof (error as { message?: unknown }).message === 'string' && (
+        <div className="invalid-feedback d-block">{(error as { message: string }).message}</div>
+      )}
+    </div>
+  );
+}

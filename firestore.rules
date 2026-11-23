@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // portfolios/{userId}: admin writes own doc; anyone can read (for public portfolio site)
+    match /portfolios/{userId} {
+      allow read: if true;
+      allow create, update, delete: if request.auth != null && request.auth.uid == userId;
+    }
+    // contactSubmissions: anyone can create (contact form); only authenticated can read/delete
+    match /contactSubmissions/{docId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+    // Block all other collections by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
