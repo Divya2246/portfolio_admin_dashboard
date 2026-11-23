@@ -15,7 +15,7 @@ import type {
 export const portfolioFormFields: DynamicFormFieldConfig[] = [
   // ——— HERO SECTION ———
   { name: '_section_hero', label: 'Hero Section', type: 'section' },
-  { name: 'fullName', label: 'Your full name', type: 'text', placeholder: 'e.g. Ankit Patil', validation: { required: true } },
+  { name: 'fullName', label: 'Your full name', type: 'text', placeholder: 'e.g. Divya Shiral', validation: { required: true } },
   { name: 'title', label: 'Title', type: 'text', placeholder: 'e.g. React Frontend Developer | Freelance Web Engineer' },
   { name: 'positioningLine', label: 'One strong positioning line', type: 'text', fullWidth: true, placeholder: 'e.g. Building scalable React applications for organizations and indie clients.' },
   { name: 'heroCtaText', label: 'Primary button label', type: 'text', placeholder: 'e.g. Book a free call' },

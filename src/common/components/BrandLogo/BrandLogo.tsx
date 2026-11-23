@@ -1,5 +1,5 @@
 interface BrandLogoProps {
-  /** Show ankitpatil.com under the name. */
+  /** Show shiraldivya25@gmail.com under the name. */
   showDomain?: boolean;
 }
 
@@ -14,7 +14,7 @@ export function BrandLogo({ showDomain = false }: BrandLogoProps) {
       </span>
       <span className="min-w-0 leading-tight">
         <span className="block truncate text-sm font-semibold tracking-tight text-ink sm:text-base">Divya</span>
-        {showDomain ? <span className="block truncate text-[11px] text-muted">ankitpatil.com</span> : null}
+        {showDomain ? <span className="block truncate text-[11px] text-muted">shiraldivya25@gmail.com</span> : null}
       </span>
     </span>
   );

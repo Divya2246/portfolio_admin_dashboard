@@ -3,8 +3,8 @@ import { PortfolioDisplay } from './PortfolioDisplay';
 import type { PortfolioData } from './types';
 
 const data: PortfolioData = {
-  fullName: 'Ankit Patil',
-  email: 'ankit@example.com',
+  fullName: 'Divya Shiral',
+  email: 'divya@example.com',
   avatarUrl: 'https://example.com/ankit.jpg',
   yearsOfExperience: '4+ years',
   projectsCompletedCount: '40+',
@@ -59,15 +59,15 @@ test('switches the main photo when another profile picture is chosen', () => {
     />
   );
 
-  expect(screen.getByAltText('Ankit Patil')).toHaveAttribute('src', 'https://example.com/ankit.jpg');
+  expect(screen.getByAltText('Divya Shiral')).toHaveAttribute('src', 'https://example.com/ankit.jpg');
   fireEvent.click(screen.getByRole('button', { name: 'Show profile photo 2' }));
-  expect(screen.getByAltText('Ankit Patil')).toHaveAttribute('src', 'https://example.com/ankit-2.jpg');
+  expect(screen.getByAltText('Divya Shiral')).toHaveAttribute('src', 'https://example.com/ankit-2.jpg');
 });
 
 test('shows the developer photo and a not-working badge on flagged projects', () => {
   render(<PortfolioDisplay data={data} />);
 
-  expect(screen.getByAltText('Ankit Patil')).toHaveAttribute('src', 'https://example.com/ankit.jpg');
+  expect(screen.getByAltText('Divya Shiral')).toHaveAttribute('src', 'https://example.com/ankit.jpg');
   expect(screen.getAllByText('Currently not working')).toHaveLength(3);
   expect(screen.getAllByText('The live demo is currently unavailable.')).toHaveLength(3);
   expect(screen.getByRole('link', { name: 'View project (may be down) →' })).toHaveAttribute('href', 'https://shop.example');

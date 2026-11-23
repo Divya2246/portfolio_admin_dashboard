@@ -3,9 +3,9 @@ import type { PortfolioData } from '../../redux/slices/portfolioSlice';
 import { parsePortfolioJson, portfolioToWorkbook, preparePortfolioForSave, toPortfolioData, workbookToPortfolio } from './portfolioTransfer';
 
 const sample: PortfolioData = {
-  fullName: 'Ankit Patil',
+  fullName: 'Divya Shiral',
   title: 'React Frontend Developer',
-  email: 'ankit@example.com',
+  email: 'divya@example.com',
   phone: '+91-9922328647',
   positioningLine: 'Building scalable React applications.',
   professionalSummary: 'Line one.\nLine two.',
@@ -55,7 +55,7 @@ describe('portfolio transfer', () => {
     expect(hidden.sectionVisibility?.hero).toBe(true);
     expect(hidden.sectionVisibility?.contact).toBe(true);
 
-    const legacy = parsePortfolioJson(JSON.stringify({ fullName: 'Ankit Patil', email: 'ankit@example.com' }));
+    const legacy = parsePortfolioJson(JSON.stringify({ fullName: 'Divya Shiral', email: 'divya@example.com' }));
     expect(legacy.sectionVisibility?.projects).toBe(true);
 
     const workbook = portfolioToWorkbook(hidden);
